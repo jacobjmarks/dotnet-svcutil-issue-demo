@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions
+    targetNamespace="http://service-root"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:tns="http://service-root"
+    xmlns:n1="http://my-ns/1.0"
+    xmlns:n2="http://my-ns/3.0">
+
+    <wsdl:types>
+        <xsd:schema
+            targetNamespace="http://service-root"
+            xmlns="http://service-root"
+            xmlns:xi0="http://my-ns/1.0"
+            xmlns:xi1="http://my-ns/3.0">
+            <xsd:import namespace="http://my-ns/3.0" />
+            <xsd:element name="ServiceBRequest" type="xi1:ServiceBRequestDef" />
+            <xsd:element name="ServiceBResponse" type="xi1:ServiceBResponseDef" />
+        </xsd:schema>
+    
+        <xsd:schema
+            targetNamespace="http://my-ns/1.0"
+            xmlns="http://my-ns/1.0"
+            xmlns:xi0="http://my-ns/1.0"
+            xmlns:xi1="http://my-ns/3.0">
+            <xsd:import namespace="http://my-ns/3.0" />
+            <xsd:element name="ServiceFault">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Property" minOccurs="0" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    
+        <xsd:schema
+            targetNamespace="http://my-ns/3.0"
+            xmlns="http://my-ns/3.0"
+            xmlns:xi0="http://my-ns/1.0"
+            xmlns:xi1="http://my-ns/3.0">
+            <xsd:complexType name="ServiceBRequestDef">
+                <xsd:sequence>
+                    <xsd:element name="Property" minOccurs="0" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ServiceBResponseDef">
+                <xsd:sequence>
+                    <xsd:element name="Property" minOccurs="0" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+ 
+    <wsdl:message name="ServiceBRequest">
+        <wsdl:part name="ServiceBRequest" element="tns:ServiceBRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="ServiceBResponse">
+        <wsdl:part name="ServiceBResponse" element="tns:ServiceBResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="ServiceFault">
+        <wsdl:part name="ServiceFault" element="n1:ServiceFault" />
+    </wsdl:message>
+
+    <wsdl:portType name="ServiceBService">
+        <wsdl:operation name="ServiceBOperation">
+            <wsdl:input message="tns:ServiceBRequest" />
+            <wsdl:output message="tns:ServiceBResponse" />
+            <wsdl:fault name="ServiceFault" message="tns:ServiceFault" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="DEFAULT" type="tns:ServiceBService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+        <wsdl:operation name="ServiceBOperation">
+            <soap:operation soapAction="http://service-root/service-b-service/service-b-operation" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="ServiceFault">
+                <soap:fault name="ServiceFault" use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="ServiceBService">
+        <wsdl:port name="ServiceBServicePort" binding="tns:DEFAULT">
+            <soap:address location="https://service-b-location" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

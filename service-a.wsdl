@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions
+    targetNamespace="http://service-root"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:tns="http://service-root"
+    xmlns:n1="http://my-ns/1.0"
+    xmlns:n2="http://my-ns/3.0">
+
+    <wsdl:types>
+        <xsd:schema
+            targetNamespace="http://service-root"
+            xmlns="http://service-root"
+            xmlns:xi0="http://my-ns/1.0"
+            xmlns:xi1="http://my-ns/3.0">
+            <xsd:import namespace="http://my-ns/3.0" />
+            <xsd:element name="ServiceARequest" type="xi1:ServiceARequestDef" />
+            <xsd:element name="ServiceAResponse" type="xi1:ServiceAResponseDef" />
+        </xsd:schema>
+    
+        <xsd:schema
+            targetNamespace="http://my-ns/1.0"
+            xmlns="http://my-ns/1.0"
+            xmlns:xi0="http://my-ns/1.0"
+            xmlns:xi1="http://my-ns/3.0">
+            <xsd:import namespace="http://my-ns/3.0" />
+            <xsd:element name="ServiceFault">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Property" minOccurs="0" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    
+        <xsd:schema
+            targetNamespace="http://my-ns/3.0"
+            xmlns="http://my-ns/3.0"
+            xmlns:xi0="http://my-ns/1.0"
+            xmlns:xi1="http://my-ns/3.0">
+            <xsd:complexType name="ServiceARequestDef">
+                <xsd:sequence>
+                    <xsd:element name="Property" minOccurs="0" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ServiceAResponseDef">
+                <xsd:sequence>
+                    <xsd:element name="Property" minOccurs="0" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+ 
+    <wsdl:message name="ServiceARequest">
+        <wsdl:part name="ServiceARequest" element="tns:ServiceARequest" />
+    </wsdl:message>
+
+    <wsdl:message name="ServiceAResponse">
+        <wsdl:part name="ServiceAResponse" element="tns:ServiceAResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="ServiceFault">
+        <wsdl:part name="ServiceFault" element="n1:ServiceFault" />
+    </wsdl:message>
+
+    <wsdl:portType name="ServiceAService">
+        <wsdl:operation name="ServiceAOperation">
+            <wsdl:input message="tns:ServiceARequest" />
+            <wsdl:output message="tns:ServiceAResponse" />
+            <wsdl:fault name="ServiceFault" message="tns:ServiceFault" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="DEFAULT" type="tns:ServiceAService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+        <wsdl:operation name="ServiceAOperation">
+            <soap:operation soapAction="http://service-root/service-a-service/service-a-operation" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="ServiceFault">
+                <soap:fault name="ServiceFault" use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="ServiceAService">
+        <wsdl:port name="ServiceAServicePort" binding="tns:DEFAULT">
+            <soap:address location="https://service-a-location" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
