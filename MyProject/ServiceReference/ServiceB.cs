@@ -7,12 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServiceB
+namespace MyProject.ServiceB
 {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://my-ns/1.0")]
     public partial class ServiceFault
@@ -36,7 +36,7 @@ namespace ServiceB
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://my-ns/3.0")]
     public partial class ServiceBResponseDef
@@ -60,7 +60,7 @@ namespace ServiceB
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://my-ns/3.0")]
     public partial class ServiceBRequestDef
@@ -83,63 +83,63 @@ namespace ServiceB
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://service-root", ConfigurationName="ServiceB.ServiceBService")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://service-root", ConfigurationName="MyProject.ServiceB.ServiceBService")]
     public interface ServiceBService
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://service-root/service-b-service/service-b-operation", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(ServiceB.ServiceFault), Action="http://service-root/service-b-service/service-b-operation", Name="ServiceFault", Namespace="http://my-ns/1.0")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MyProject.ServiceB.ServiceFault), Action="http://service-root/service-b-service/service-b-operation", Name="ServiceFault", Namespace="http://my-ns/1.0")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Threading.Tasks.Task<ServiceB.ServiceBOperationResponse> ServiceBOperationAsync(ServiceB.ServiceBOperationRequest request);
+        System.Threading.Tasks.Task<MyProject.ServiceB.ServiceBOperationResponse> ServiceBOperationAsync(MyProject.ServiceB.ServiceBOperationRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class ServiceBOperationRequest
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://service-root", Order=0)]
-        public ServiceB.ServiceBRequestDef ServiceBRequest;
+        public MyProject.ServiceB.ServiceBRequestDef ServiceBRequest;
         
         public ServiceBOperationRequest()
         {
         }
         
-        public ServiceBOperationRequest(ServiceB.ServiceBRequestDef ServiceBRequest)
+        public ServiceBOperationRequest(MyProject.ServiceB.ServiceBRequestDef ServiceBRequest)
         {
             this.ServiceBRequest = ServiceBRequest;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class ServiceBOperationResponse
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://service-root", Order=0)]
-        public ServiceB.ServiceBResponseDef ServiceBResponse;
+        public MyProject.ServiceB.ServiceBResponseDef ServiceBResponse;
         
         public ServiceBOperationResponse()
         {
         }
         
-        public ServiceBOperationResponse(ServiceB.ServiceBResponseDef ServiceBResponse)
+        public ServiceBOperationResponse(MyProject.ServiceB.ServiceBResponseDef ServiceBResponse)
         {
             this.ServiceBResponse = ServiceBResponse;
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public interface ServiceBServiceChannel : ServiceB.ServiceBService, System.ServiceModel.IClientChannel
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    public interface ServiceBServiceChannel : MyProject.ServiceB.ServiceBService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public partial class ServiceBServiceClient : System.ServiceModel.ClientBase<ServiceB.ServiceBService>, ServiceB.ServiceBService
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    public partial class ServiceBServiceClient : System.ServiceModel.ClientBase<MyProject.ServiceB.ServiceBService>, MyProject.ServiceB.ServiceBService
     {
         
         /// <summary>
@@ -182,7 +182,7 @@ namespace ServiceB
         {
         }
         
-        public System.Threading.Tasks.Task<ServiceB.ServiceBOperationResponse> ServiceBOperationAsync(ServiceB.ServiceBOperationRequest request)
+        public System.Threading.Tasks.Task<MyProject.ServiceB.ServiceBOperationResponse> ServiceBOperationAsync(MyProject.ServiceB.ServiceBOperationRequest request)
         {
             return base.Channel.ServiceBOperationAsync(request);
         }
@@ -190,11 +190,6 @@ namespace ServiceB
         public virtual System.Threading.Tasks.Task OpenAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
-        }
-        
-        public virtual System.Threading.Tasks.Task CloseAsync()
-        {
-            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
         }
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
